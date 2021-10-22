@@ -14,9 +14,18 @@
     "express": "^4.17.1",
     "loadash": "^1.0.0",
     "morgan": "^1.10.0",
-    "npm": "^8.1.0"
+    "npm": "^8.1.1",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "eslint": "^8.0.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JPENA41/movie_api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JPENA41/movie_api/issues"
+  },
+  "homepage": "https://github.com/JPENA41/movie_api#readme"
 }
