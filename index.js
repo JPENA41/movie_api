@@ -55,9 +55,9 @@ let topTenMovies = [
         director: 'Brad Bird'
     },
     {
-        title: 'Instructions Not Included',
-        genre: ['Comedy', 'Drama'],
-        director: 'Eugenio Derbez'
+        title: 'The Evil Dead',
+        genre: ['Horror', 'Fantasy'],
+        director: 'Sam Raimi'
     }
 ];
 
