@@ -61,14 +61,8 @@ let topTenMovies = [
     }
 ];
 
-app.use(morgan('common'));
-
 app.get('/', (req, res) => {
     res.send('Welcome to myFlix App!');
-});
-
-app.get('/documentation', (req, res) => {
-	res.sendFile('public/documentation.html', { root: __dirname });
 });
 
 // Get a list of every movie
