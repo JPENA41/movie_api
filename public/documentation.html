@@ -5,70 +5,216 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>myFlix</title>
+    <link
+      rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+      crossorigin="anonymous">
   </head>
   <body>
-    <h1>Instructions Page</h1>
-    <p>
-      The web application will provide users with access to information about
-      various movies, directors, and genres. Users can sign up, update their
-      personal information, and build a list of their favorite movies.
-    </p>
+    <figure class="text-center">
+      <h1>Instructions Page</h1>
+      <p>
+        The web application will provide users with access to information from
+        various movies, directors, and genres. Users can sign up, update their
+        personal information, and build a list of their favorite movies.
+      </p>
+  </figure>
 
-    <table>
-      <thead>
+
+    <table class="table">
+      <thead class="thead-dark">
         <tr>
-          <th>Request</th>
-          <th>URL</th>
-          <th>Responses</th>
+          <th scope="col">Request</th>
+          <th scope="col">URL</th>
+          <th scope="col">HTTP Method</th>
+          <th scope="col">Request body data format</th>
+          <th scope="col">Response body data format</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>GET</td>
+          <th scope="row">Get a list of every movie</th>
           <td>/movies</td>
-          <td>Return a list of every movie.</td>
-        </tr>
-        <tr>
           <td>GET</td>
-          <td>/movies/:title</td>
-          <td>Return a particular movie by title.</td>
+          <td>None</td>
+          <td>A JSON object holding data about all the movies</td>
         </tr>
         <tr>
+          <th scope="row">Get a list of every user</th>
+          <td>/users</td>
           <td>GET</td>
-          <td>/genres/:genre</td>
-          <td>Return data about a specific movie genre.</td>
+          <td>None</td>
+          <td>A JSON object holding data about all the registered users</td>
         </tr>
         <tr>
+          <th scope="row">Get a certain movie by title</th>
+          <td>/movies/[Title]</td>
           <td>GET</td>
-          <td>/directors/:directorsName</td>
-          <td>Return data about a director by name.</td>
+          <td>None</td>
+          <td>
+            A JSON holding data about a single movie,<br>
+            Example:<br>
+            {<br>
+            "Genre":<br>
+            "Name": "Genre's name",<br>
+            "Description": "Description of the genre.",<br>
+            "Director: "<br>
+            "Name": "Director's Name",<br>
+            "Bio": "Director's biography",<br>
+            "Birthyear": "YYYY",<br>
+            "Deathyear": "YYYY",<br>
+            "_id": objectId,<br>
+            "Title": "Movie Name",<br>
+            "Description": "Movie description",<br>
+            "Actors": ["Actor 1", "Actor 2", "Actor 3"],<br>
+            "imageUrl": "www.link.to/movie/coverartwork",<br>
+            "Featured": Boolean<br>
+            }
+          </td>
         </tr>
         <tr>
+          <th scope="row">Get data of a specific movie genre</th>
+          <td>/genre/[Name]</td>
+          <td>GET</td>
+          <td>None</td>
+          <td>
+            A JSON object holding data about a single movie director,<br>
+            Example:<br>
+            {<br>
+            "Name": "Genre's name",<br>
+            "Description": "Description of the selected genre..."<br>
+            }
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Get data of a director by name</th>
+          <td>/director/[Name]</td>
+          <td>GET</td>
+          <td>Specify director name in UR; the query is case sensitive.</td>
+          <td>
+            A JSON object holding data about a single movie director,<br>
+            Example:<br>
+            {<br>
+            "_id": objectId,<br>
+            "Name": "Director's Name",<br>
+            "Bio": "Director's biography",<br>
+            "Birthyear": "YYYY",<br>
+            "Deathyear": "YYYY"<br>
+            }
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Get data of a user by name</th>
+          <td>/users/[Username]</td>
+          <td>GET</td>
+          <td>Specify username in URL; the query is case sensitive.</td>
+          <td>
+            A JSON object holding data about a single user,<br>
+            Example:<br>
+            {<br>
+            "_id": objectId,<br>
+            "Username": "Username",<br>
+            "Password": "Password",<br>
+            "Email": "example@mail.com",<br>
+            "Birthday": "YYYY-mm-dd",<br>
+            "FavoritesMovies": [MovieID1, MovieID2]<br>
+            }
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Add a new user by registering</th>
+          <td>/users</td>
           <td>POST</td>
-          <td>/register</td>
-          <td>Allow registation.</td>
+          <td>
+            A JSON object holding data about the new user to add, structure like this:<br>
+            {<br>
+            "Username": "Username",<br>
+            "Password": "Password",<br>
+            "Email": "example@yahoo.com",<br>
+            "Birthday": "YYYY-mm-dd",<br>
+            }
+          </td>
+          <td>
+            A JSON object holding data about the user that was added, including an ID:<br>
+            {<br>
+            "_id": objectId,
+            "Username": "Username",<br>
+            "Password": "Password",<br>
+            "Email": "example@mail.com",<br>
+            "Birthday": "YYYY-mm-dd",<br>
+            }
+          </td>
         </tr>
         <tr>
+          <th scope="row">Allow user to update either their account</th>
+          <td>/users/[Username]</td>
           <td>PUT</td>
-          <td>/users/:id/:infoToUpdate/:newValue</td>
-          <td>Allow user to update their username.</td>
+          <td>
+            A JSON object holding data about user info to update,<br>
+            Example:<br>
+            {<br>
+            "Email": "new.email-address@mail.com",<br>
+            }
+          </td>
+          <td>
+            A JSON object holding data of a user info that is sucessfully updated,<br>
+            Example:<br>
+            {<br>
+            "_id": objectId,<br>
+            "Username": "Username",<br>
+            "Password": "Password",<br>
+            "Email": "new.email-address@mail.com",<br>
+            "Birthday": "YYYY-mm-dd",<br>
+            }
+          </td>
         </tr>
         <tr>
+          <th scope="row">Allow user to add a movie to the list of favorites</th>
+          <td>/users/[Username]/movies/[MovieID]</td>
           <td>POST</td>
-          <td>/users/:id/:favorites/:newFavorite</td>
-          <td>Allow user to add a movie to the list of favorites.</td>
+          <td>None</td>
+          <td>
+            A JSON object holding data of a user info that is sucessfully updated,<br>
+            Example:<br>
+            {<br>
+            "_id": objectId,<br>
+            "Username": "Username",<br>
+            "Password": "Password",<br>
+            "Email": "new.email-address@mail.com",<br>
+            "Birthday": "YYYY-mm-dd",<br>
+            "FavoritesMovies": [MovieID1]<br>
+            }
+          </td>
         </tr>
         <tr>
+          <th scope="row">Unregister a existing user from the database</th>
+          <td>/users/[Username]</td>
           <td>DELETE</td>
-          <td>/users/:id/unregister</td>
-          <td>Unregister a existing user from the database.</td>
+          <td>None</td>
+          <td>A text message indicating the user was successfully de-registered</td>
         </tr>
         <tr>
+          <th scope="row">Remove a favorite movie from the user's favorites</th>
+          <td>/users/[Username]/movies/[MovieID]</td>
           <td>DELETE</td>
-          <td>/users/:id/favorites/:deleteFavorite</td>
-          <td>Remove a favorite movie from the user's favorites.</td>
+          <td>None</td>
+          <td>A text message indicating the movie was successfully removed from favorite list.</td>
         </tr>
       </tbody>
     </table>
+
+    <!-- Scripts -->
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+    <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+    integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+    crossorigin="anonymous"></script>
+    <script
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+    crossorigin="anonymous"></script>
   </body>
 </html>
