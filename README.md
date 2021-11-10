@@ -18,4 +18,3 @@ single movie by title to the user
 3. Technologies:
 - HTML, JS
 - Node.js
-- Bootstrap
