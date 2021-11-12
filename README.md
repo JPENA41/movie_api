@@ -18,6 +18,3 @@ single movie by title to the user
 3. Technologies:
 - HTML, JS
 - Node.js
-
-4. URL:
-- https://protected-gorge-74849.herokuapp.com/
